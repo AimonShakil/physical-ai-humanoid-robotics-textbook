@@ -260,13 +260,15 @@ print(f"Numerical IK: {np.degrees(theta_numerical)}")
 
 Dynamics describes the relationship between forces and motion. The fundamental equation is:
 
-$$\tau = M(\theta)\ddot{\theta} + C(\theta, \dot{\theta})\dot{\theta} + G(\theta)$$
+```
+τ = M(θ)θ̈ + C(θ, θ̇)θ̇ + G(θ)
+```
 
 Where:
-- $\tau$ = applied torques
-- $M(\theta)$ = mass/inertia matrix
-- $C(\theta, \dot{\theta})$ = Coriolis and centrifugal terms
-- $G(\theta)$ = gravitational torques
+- τ = applied torques
+- M(θ) = mass/inertia matrix
+- C(θ, θ̇) = Coriolis and centrifugal terms
+- G(θ) = gravitational torques
 
 ### Lagrangian Mechanics Approach
 

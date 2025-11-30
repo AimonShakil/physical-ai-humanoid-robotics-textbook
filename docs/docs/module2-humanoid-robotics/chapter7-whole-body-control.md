@@ -23,9 +23,11 @@ Unlike single-arm robots that optimize only end-effector motion, humanoids must 
 
 Tasks are organized by priority. Higher-priority tasks must be satisfied; lower-priority tasks use null-space of higher-priority tasks:
 
-$$\dot{\theta} = J_1^{+} \dot{x}_1 + (I - J_1^{+}J_1) J_2^{+} \dot{x}_2 + \cdots$$
+```
+θ̇ = J₁⁺ẋ₁ + (I - J₁⁺J₁)J₂⁺ẋ₂ + ⋯
+```
 
-Where $J_i^{+}$ is the pseudo-inverse of Jacobian for task $i$.
+Where J_i⁺ is the pseudo-inverse of Jacobian for task i.
 
 ```python
 import numpy as np

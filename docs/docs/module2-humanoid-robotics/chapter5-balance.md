@@ -15,25 +15,31 @@ The most widely used model for bipedal balance is the Linear Inverted Pendulum M
 
 ### Simple Pendulum vs. Inverted Pendulum
 
-For a pendulum with pivot at origin and mass $m$ at distance $l$:
+For a pendulum with pivot at origin and mass m at distance l:
 
 **Simple Pendulum** (stable equilibrium):
-$$\ddot{\theta} + \frac{g}{l}\sin\theta = 0$$
+```
+θ̈ + (g/l)sin(θ) = 0
+```
 
 **Inverted Pendulum** (unstable equilibrium):
-$$\ddot{\theta} - \frac{g}{l}\sin\theta = 0$$
+```
+θ̈ - (g/l)sin(θ) = 0
+```
 
 ### Linear Inverted Pendulum Model (LIPM)
 
-For small angles and constant height $h$:
+For small angles and constant height h:
 
-$$\ddot{x} = \frac{g}{h}(x - x_{ZMP})$$
+```
+ẍ = (g/h)(x - x_ZMP)
+```
 
 Where:
-- $x$ = horizontal position of center of mass
-- $x_{ZMP}$ = zero moment point location
-- $h$ = height of center of mass
-- $g$ = gravitational acceleration
+- x = horizontal position of center of mass
+- x_ZMP = zero moment point location
+- h = height of center of mass
+- g = gravitational acceleration
 
 ```python
 import numpy as np

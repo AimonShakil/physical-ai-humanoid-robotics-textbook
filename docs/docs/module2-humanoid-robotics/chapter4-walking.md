@@ -87,13 +87,15 @@ The Zero Moment Point (ZMP) is the point on the ground where the moment (torque)
 
 The ZMP position is calculated from ground reaction forces:
 
-$$p_{ZMP} = \frac{\sum_i (m_i \vec{r}_i \times (\vec{g} + \vec{a}_i))}{\sum_i m_i g}$$
+```
+p_ZMP = (Σ m_i * r_i × (g + a_i)) / (Σ m_i * g)
+```
 
 Where:
-- $m_i$ = mass of segment $i$
-- $\vec{r}_i$ = position of segment $i$
-- $\vec{a}_i$ = acceleration of segment $i$
-- $g$ = gravitational acceleration
+- m_i = mass of segment i
+- r_i = position of segment i
+- a_i = acceleration of segment i
+- g = gravitational acceleration
 
 ### Stability Criterion
 

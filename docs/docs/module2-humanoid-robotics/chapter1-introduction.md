@@ -74,9 +74,11 @@ Building effective humanoid robots requires solving several interconnected probl
 ### 2. Control Theory
 Humanoid robots require sophisticated control algorithms to manage complex dynamics:
 
-$$\frac{d^2x}{dt^2} = f(x, \dot{x}, u, t)$$
+```
+d²x/dt² = f(x, ẋ, u, t)
+```
 
-Where $x$ is state, $u$ is control input, and $f$ represents system dynamics.
+Where x is state, u is control input, and f represents system dynamics.
 
 ### 3. Motion Planning
 Finding collision-free paths while satisfying physical constraints requires computational efficiency.

@@ -202,7 +202,9 @@ print(f"\nEstimated total data rate: {total_data_rate/1e6:.2f} Mbps")
 
 A critical design parameter is the location of the center of mass (CoM):
 
-$$\vec{r}_{CoM} = \frac{\sum_i m_i \vec{r}_i}{\sum_i m_i}$$
+```
+r_CoM = (Σ m_i * r_i) / (Σ m_i)
+```
 
 For bipedal stability, the CoM projection must remain within the support polygon (feet area):
 

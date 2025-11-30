@@ -12,13 +12,15 @@ While forward kinematics tells us where the end-effector is, inverse kinematics 
 ## Inverse Kinematics Problem Formulation
 
 Given:
-- Desired end-effector position: $\vec{p}_d \in \mathbb{R}^3$
-- Desired end-effector orientation: $R_d \in SO(3)$
-- Current joint configuration: $\vec{\theta}_0$
+- Desired end-effector position: p_d ∈ ℝ³
+- Desired end-effector orientation: R_d ∈ SO(3)
+- Current joint configuration: θ₀
 
-Find: $\vec{\theta}$ such that:
+Find: θ such that:
 
-$$f_k(\vec{\theta}) = \vec{p}_d, \quad R_k(\vec{\theta}) = R_d$$
+```
+f_k(θ) = p_d,  R_k(θ) = R_d
+```
 
 ### Challenges
 
