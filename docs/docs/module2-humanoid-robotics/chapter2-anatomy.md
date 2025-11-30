@@ -202,7 +202,7 @@ print(f"\nEstimated total data rate: {total_data_rate/1e6:.2f} Mbps")
 
 A critical design parameter is the location of the center of mass (CoM):
 
-```
+```text
 r_CoM = (Σ m_i * r_i) / (Σ m_i)
 ```
 

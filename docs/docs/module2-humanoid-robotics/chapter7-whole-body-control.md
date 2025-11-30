@@ -23,7 +23,7 @@ Unlike single-arm robots that optimize only end-effector motion, humanoids must 
 
 Tasks are organized by priority. Higher-priority tasks must be satisfied; lower-priority tasks use null-space of higher-priority tasks:
 
-```
+```text
 θ̇ = J₁⁺ẋ₁ + (I - J₁⁺J₁)J₂⁺ẋ₂ + ⋯
 ```
 

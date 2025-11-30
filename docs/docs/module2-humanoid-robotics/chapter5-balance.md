@@ -18,12 +18,12 @@ The most widely used model for bipedal balance is the Linear Inverted Pendulum M
 For a pendulum with pivot at origin and mass m at distance l:
 
 **Simple Pendulum** (stable equilibrium):
-```
+```text
 θ̈ + (g/l)sin(θ) = 0
 ```
 
 **Inverted Pendulum** (unstable equilibrium):
-```
+```text
 θ̈ - (g/l)sin(θ) = 0
 ```
 

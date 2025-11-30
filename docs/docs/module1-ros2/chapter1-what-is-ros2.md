@@ -162,7 +162,7 @@ graph TB
 
 ### Not Ideal For:
 - ❌ Bare-metal microcontrollers (use micro-ROS instead)
-- ❌ Hard real-time &lt;1ms requirements
+- ❌ Hard real-time less than 1ms requirements
 - ❌ Simple single-board projects (might be overkill)
 
 ## Supported Platforms

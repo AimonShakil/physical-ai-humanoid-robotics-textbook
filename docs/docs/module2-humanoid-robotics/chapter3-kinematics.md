@@ -260,7 +260,7 @@ print(f"Numerical IK: {np.degrees(theta_numerical)}")
 
 Dynamics describes the relationship between forces and motion. The fundamental equation is:
 
-```
+```text
 τ = M(θ)θ̈ + C(θ, θ̇)θ̇ + G(θ)
 ```
 

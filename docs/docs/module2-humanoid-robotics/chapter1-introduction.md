@@ -74,7 +74,7 @@ Building effective humanoid robots requires solving several interconnected probl
 ### 2. Control Theory
 Humanoid robots require sophisticated control algorithms to manage complex dynamics:
 
-```
+```text
 d²x/dt² = f(x, ẋ, u, t)
 ```
 

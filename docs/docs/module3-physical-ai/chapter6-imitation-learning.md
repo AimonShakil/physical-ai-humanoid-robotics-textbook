@@ -325,7 +325,7 @@ class VisualBehaviorCloningPolicy(nn.Module):
 
 ## Inverse Models and Self-Supervised Learning
 
-An **inverse model** predicts actions from state transitions: given (s_t, s_{t+1}), predict a_t. This can be trained without expert labels, using any collected experience.
+An **inverse model** predicts actions from state transitions: given `(s_t, s_{t+1})`, predict `a_t`. This can be trained without expert labels, using any collected experience.
 
 ```python
 class InverseModel(nn.Module):
