@@ -1,0 +1,14 @@
+[phases.setup]
+nixPkgs = ['nodejs-20_x', 'python311']
+
+[phases.install]
+cmds = [
+  'cd docs && npm ci',
+  'cd ../backend && pip install -r requirements.txt'
+]
+
+[phases.build]
+cmds = ['cd docs && npm run build']
+
+[start]
+cmd = 'cd docs && npx serve build -l 3000'
