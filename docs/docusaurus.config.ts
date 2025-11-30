@@ -17,15 +17,15 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://localhost:3000',
+  url: 'https://aimonshakil.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/physical-ai-humanoid-robotics-textbook/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'physical-ai', // Usually your GitHub org/user name.
-  projectName: 'humanoid-robotics-textbook', // Usually your repo name.
+  organizationName: 'AimonShakil', // Usually your GitHub org/user name.
+  projectName: 'physical-ai-humanoid-robotics-textbook', // Usually your repo name.
 
   onBrokenLinks: 'warn',
 
@@ -91,7 +91,7 @@ const config: Config = {
           label: 'Textbook',
         },
         {
-          href: 'https://github.com/your-org/physical-ai-humanoid-robotics-textbook',
+          href: 'https://github.com/AimonShakil/physical-ai-humanoid-robotics-textbook',
           label: 'GitHub',
           position: 'right',
         },
@@ -118,7 +118,7 @@ const config: Config = {
             },
             {
               label: 'GitHub Repository',
-              href: 'https://github.com/your-org/physical-ai-humanoid-robotics-textbook',
+              href: 'https://github.com/AimonShakil/physical-ai-humanoid-robotics-textbook',
             },
           ],
         },
