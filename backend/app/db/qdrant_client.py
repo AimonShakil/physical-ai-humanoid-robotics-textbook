@@ -13,10 +13,13 @@ QDRANT_COLLECTION_NAME = os.getenv("QDRANT_COLLECTION_NAME", "textbook_chunks")
 if not QDRANT_URL or not QDRANT_API_KEY:
     raise ValueError("QDRANT_URL and QDRANT_API_KEY environment variables must be set")
 
-# Initialize Qdrant client
+# Initialize Qdrant client with increased timeout
 qdrant_client = QdrantClient(
     url=QDRANT_URL,
     api_key=QDRANT_API_KEY,
+    timeout=60.0,  # Increase timeout to 60 seconds
+    https=True,
+    prefer_grpc=False  # Use REST API instead of gRPC for better reliability
 )
 
 

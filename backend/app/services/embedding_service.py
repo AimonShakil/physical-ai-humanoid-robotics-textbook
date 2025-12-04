@@ -31,11 +31,18 @@ class EmbeddingService:
             qdrant_api_key: Qdrant API key
             collection_name: Name of Qdrant collection
         """
+        print("EmbeddingService: Initializing OpenAI client...")
         self.openai_client = OpenAI(api_key=openai_api_key)
+        print("EmbeddingService: OpenAI client initialized.")
+        print("EmbeddingService: Initializing Qdrant client...")
         self.qdrant_client = QdrantClient(
             url=qdrant_url,
-            api_key=qdrant_api_key
+            api_key=qdrant_api_key,
+            timeout=60.0,  # Increase timeout to 60 seconds
+            https=True,
+            prefer_grpc=False  # Use REST API instead of gRPC for better reliability
         )
+        print("EmbeddingService: Qdrant client initialized.")
         self.collection_name = collection_name
         self.embedding_model = "text-embedding-3-small"
         self.embedding_dimension = 1536  # text-embedding-3-small dimension
@@ -165,7 +172,7 @@ class EmbeddingService:
 def main():
     """Test the embedding service."""
     import sys
-    from document_chunker import DocumentChunker
+    from app.services.document_chunker import DocumentChunker
 
     if len(sys.argv) < 2:
         print("Usage: python embedding_service.py <docs_path>")

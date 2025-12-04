@@ -26,7 +26,22 @@ export default function Chatbot(): JSX.Element {
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [citations, setCitations] = useState<Citation[]>([]);
+  const [selectedText, setSelectedText] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Handle text selection
+  useEffect(() => {
+    const handleTextSelection = () => {
+      const selection = window.getSelection();
+      const text = selection?.toString().trim();
+      if (text && text.length > 3) {
+        setSelectedText(text);
+      }
+    };
+
+    document.addEventListener('mouseup', handleTextSelection);
+    return () => document.removeEventListener('mouseup', handleTextSelection);
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -45,7 +60,9 @@ export default function Chatbot(): JSX.Element {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8000/api/chat', {
+      // Use environment variable for backend URL, fallback to localhost for development
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+      const response = await fetch(`${backendUrl}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,8 +105,27 @@ export default function Chatbot(): JSX.Element {
     }
   };
 
+  const askAboutSelection = () => {
+    setInput(`Explain: "${selectedText}"`);
+    setIsOpen(true);
+    setSelectedText('');
+  };
+
   return (
     <>
+      {/* Text Selection Popup */}
+      {selectedText && !isOpen && (
+        <div className={styles.selectionPopup}>
+          <button
+            className={styles.askButton}
+            onClick={askAboutSelection}
+            title="Ask AI about this"
+          >
+            🤖 Ask about this
+          </button>
+        </div>
+      )}
+
       {/* Floating Chat Button */}
       <button
         className={styles.chatButton}

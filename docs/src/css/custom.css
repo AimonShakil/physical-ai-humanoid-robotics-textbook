@@ -1,30 +1,304 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Physical AI & Humanoid Robotics - Custom Theme
+ * Inspired by modern robotics platforms with dark mode default
  */
 
-/* You can override the default Infima variables here. */
+/* Import modern fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ===== LIGHT MODE ===== */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Primary - Electric Blue (Robotics/AI theme) */
+  --ifm-color-primary: #3a7bd5;
+  --ifm-color-primary-dark: #2e6bc4;
+  --ifm-color-primary-darker: #2a63b8;
+  --ifm-color-primary-darkest: #225197;
+  --ifm-color-primary-light: #4f8de0;
+  --ifm-color-primary-lighter: #5b96e2;
+  --ifm-color-primary-lightest: #7daae8;
+
+  /* Fonts - Modern, clean */
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', monospace;
+  --ifm-code-font-size: 90%;
+  --ifm-font-size-base: 16px;
+  --ifm-line-height-base: 1.7;
+
+  /* Spacing */
+  --ifm-leading-desktop: 1.5;
+  --ifm-spacing-horizontal: 1rem;
+
+  /* Code blocks */
+  --docusaurus-highlighted-code-line-bg: rgba(58, 123, 213, 0.1);
+
+  /* Navbar */
+  --ifm-navbar-height: 70px;
+  --ifm-navbar-background-color: #ffffff;
+  --ifm-navbar-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* ===== DARK MODE (DEFAULT) ===== */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* Primary - Cyber Blue/Purple gradient feel */
+  --ifm-color-primary: #00d2ff;
+  --ifm-color-primary-dark: #00bde6;
+  --ifm-color-primary-darker: #00b2d9;
+  --ifm-color-primary-darkest: #0092b3;
+  --ifm-color-primary-light: #1adbff;
+  --ifm-color-primary-lighter: #2ddfff;
+  --ifm-color-primary-lightest: #5ce7ff;
+
+  /* Background - Deep space theme */
+  --ifm-background-color: #0d1117;
+  --ifm-background-surface-color: #161b22;
+  --ifm-color-content: #c9d1d9;
+  --ifm-color-content-secondary: #8b949e;
+
+  /* Navbar - Sleek dark */
+  --ifm-navbar-background-color: #0d1117;
+  --ifm-navbar-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+
+  /* Code blocks - GitHub dark style */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 210, 255, 0.15);
+  --ifm-code-background: #161b22;
+
+  /* Sidebar */
+  --ifm-menu-color-background-active: rgba(0, 210, 255, 0.1);
+  --ifm-menu-color-background-hover: rgba(0, 210, 255, 0.05);
+}
+
+/* ===== GLOBAL STYLES ===== */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better code blocks */
+code {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 4px;
+  padding: 0.1rem 0.3rem;
+  font-weight: 500;
+}
+
+pre code {
+  border: none;
+  padding: 0;
+}
+
+/* Navbar enhancements */
+.navbar {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+  backdrop-filter: blur(8px);
+  background: var(--ifm-navbar-background-color);
+}
+
+.navbar__title {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Navbar items */
+.navbar__item {
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navbar__link:hover {
+  color: var(--ifm-color-primary);
+}
+
+/* Sidebar styling */
+.menu {
+  font-weight: 500;
+  padding: 0.5rem;
+}
+
+.menu__link {
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.menu__link:hover {
+  background: var(--ifm-menu-color-background-hover);
+}
+
+.menu__link--active {
+  background: var(--ifm-menu-color-background-active);
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+/* Content area */
+.markdown {
+  --ifm-h1-font-size: 2.5rem;
+  --ifm-h2-font-size: 2rem;
+  --ifm-h3-font-size: 1.5rem;
+}
+
+.markdown h1 {
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-lighter) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.markdown h2 {
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--ifm-color-emphasis-200);
+}
+
+.markdown h3 {
+  font-weight: 600;
+  margin-top: 2rem;
+  color: var(--ifm-color-primary);
+}
+
+/* Links */
+.markdown a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--ifm-color-primary);
+  transition: all 0.2s;
+}
+
+.markdown a:hover {
+  border-bottom: 2px solid var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+/* Admonitions (callouts) */
+.admonition {
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .admonition {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Tables */
+.markdown table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.markdown th {
+  background: var(--ifm-color-primary);
+  color: white;
+  font-weight: 600;
+}
+
+/* Buttons */
+.button {
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.button--primary {
+  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-dark) 100%);
+  border: none;
+}
+
+.button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 210, 255, 0.3);
+}
+
+/* Footer */
+.footer {
+  background: var(--ifm-background-surface-color);
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* Pagination */
+.pagination-nav__link {
+  border-radius: 12px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  transition: all 0.2s;
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Search bar enhancements */
+.navbar__search input {
+  border-radius: 24px;
+  background: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.navbar__search input:focus {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.1);
+}
+
+/* Responsive design improvements */
+@media (max-width: 996px) {
+  .markdown h1 {
+    font-size: 2rem;
+  }
+
+  .markdown h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Scrollbar customization (dark mode) */
+[data-theme='dark']::-webkit-scrollbar {
+  width: 12px;
+}
+
+[data-theme='dark']::-webkit-scrollbar-track {
+  background: var(--ifm-background-color);
+}
+
+[data-theme='dark']::-webkit-scrollbar-thumb {
+  background: var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+}
+
+[data-theme='dark']::-webkit-scrollbar-thumb:hover {
+  background: var(--ifm-color-primary);
+}
+
+/* Code block enhancements */
+.prism-code {
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Accessibility improvements */
+.skipToContent_fXgn {
+  background: var(--ifm-color-primary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.markdown > * {
+  animation: fadeInUp 0.5s ease-out;
 }
