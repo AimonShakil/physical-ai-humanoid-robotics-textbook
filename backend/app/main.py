@@ -15,7 +15,10 @@ app = FastAPI(
 # CORS middleware configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Docusaurus dev server
+    allow_origins=[
+        "http://localhost:3000",  # Docusaurus dev server
+        "https://aimonshakil.github.io",  # GitHub Pages production
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
