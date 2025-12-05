@@ -20,7 +20,7 @@ interface ChatResponse {
   context_used: number;
 }
 
-export default function Chatbot(): JSX.Element {
+export default function Chatbot(): React.JSX.Element {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);

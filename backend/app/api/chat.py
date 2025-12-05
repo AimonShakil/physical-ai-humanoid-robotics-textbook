@@ -14,6 +14,7 @@ from openai import OpenAI
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from services.embedding_service import EmbeddingService
+from services.cache_service import SemanticCacheService
 
 
 router = APIRouter()
@@ -21,14 +22,20 @@ router = APIRouter()
 # Initialize services
 openai_client = None
 embedding_service = None
+cache_service = None
 
-# Initialize embedding service on startup
+# Initialize services on startup
 def initialize_services():
-    global embedding_service, openai_client
+    global embedding_service, openai_client, cache_service
     openai_api_key = os.getenv("OPENAI_API_KEY")
     qdrant_url = os.getenv("QDRANT_URL")
     qdrant_api_key = os.getenv("QDRANT_API_KEY")
     collection_name = os.getenv("QDRANT_COLLECTION_NAME", "textbook_chunks")
+
+    # Cache configuration
+    cache_enabled = os.getenv("CACHE_ENABLED", "true").lower() == "true"
+    cache_similarity_threshold = float(os.getenv("CACHE_SIMILARITY_THRESHOLD", "0.85"))
+    cache_ttl = int(os.getenv("CACHE_TTL_SECONDS", "86400"))  # 24 hours
 
     if all([openai_api_key, qdrant_url, qdrant_api_key]):
         # Initialize OpenAI client here, after .env is loaded
@@ -41,6 +48,17 @@ def initialize_services():
             qdrant_api_key=qdrant_api_key,
             collection_name=collection_name
         )
+
+        # Initialize cache service
+        if cache_enabled:
+            cache_service = SemanticCacheService(
+                openai_api_key=openai_api_key,
+                similarity_threshold=cache_similarity_threshold,
+                ttl_seconds=cache_ttl
+            )
+            print(f"✅ Semantic cache enabled (threshold: {cache_similarity_threshold}, TTL: {cache_ttl}s)")
+        else:
+            print("⚠️  Semantic cache disabled")
     else:
         print("Warning: Missing environment variables for embedding service")
         print(f"  OPENAI_API_KEY: {'✅' if openai_api_key else '❌'}")
@@ -69,14 +87,17 @@ class ChatResponse(BaseModel):
     answer: str
     citations: List[Citation]
     context_used: int
+    from_cache: bool = False
+    cache_similarity: Optional[float] = None
 
 
 @router.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     """
-    RAG-powered chat endpoint.
+    RAG-powered chat endpoint with semantic caching.
 
     Retrieves relevant textbook content and generates an answer with citations.
+    Uses semantic caching to improve response times and reduce costs.
     """
     if not embedding_service or not openai_client:
         raise HTTPException(
@@ -87,6 +108,27 @@ async def chat(request: ChatRequest):
     try:
         import time
         start_time = time.time()
+
+        # Step 0: Check cache first (if enabled)
+        if cache_service:
+            cached_result = await cache_service.get_cached_response(request.query)
+            if cached_result:
+                total_time = time.time() - start_time
+                print(f"⏱️  TOTAL response time (from cache): {total_time:.2f}s")
+
+                # Convert cached citations back to Citation objects
+                citations = [
+                    Citation(**citation) if isinstance(citation, dict) else citation
+                    for citation in cached_result['citations']
+                ]
+
+                return ChatResponse(
+                    answer=cached_result['response'],
+                    citations=citations,
+                    context_used=cached_result['context_used'],
+                    from_cache=True,
+                    cache_similarity=cached_result.get('cache_similarity')
+                )
 
         # Step 1: Retrieve relevant chunks
         embed_start = time.time()
@@ -169,10 +211,22 @@ When answering:
             for chunk in relevant_chunks
         ]
 
+        # Step 7: Cache the response (if cache enabled)
+        if cache_service:
+            # Convert citations to dict for caching
+            citations_dict = [citation.dict() for citation in citations]
+            await cache_service.cache_response(
+                query=request.query,
+                response=answer,
+                citations=citations_dict,
+                context_used=len(relevant_chunks)
+            )
+
         return ChatResponse(
             answer=answer,
             citations=citations,
-            context_used=len(relevant_chunks)
+            context_used=len(relevant_chunks),
+            from_cache=False
         )
 
     except Exception as e:
@@ -212,4 +266,26 @@ async def chat_stats():
         raise HTTPException(
             status_code=500,
             detail=f"Error fetching stats: {str(e)}"
+        )
+
+
+@router.get("/chat/cache-stats")
+async def cache_stats():
+    """Get cache performance statistics."""
+    if not cache_service:
+        return {
+            "cache_enabled": False,
+            "message": "Semantic cache is disabled"
+        }
+
+    try:
+        stats = cache_service.get_stats()
+        return {
+            "cache_enabled": True,
+            **stats
+        }
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error fetching cache stats: {str(e)}"
         )
