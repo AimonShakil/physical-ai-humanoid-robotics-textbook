@@ -1,6 +1,7 @@
 /**
- * Physical AI & Humanoid Robotics - Enhanced Premium Theme
+ * Physical AI & Humanoid Robotics - Enhanced Premium Theme v2.0
  * Features: Light/Dark mode, Glassmorphism, Animations, Modern gradients
+ * Build: 2025-12-05 - Force cache bust
  */
 
 /* Import premium fonts */
@@ -47,6 +48,7 @@
   --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', monospace;
   --ifm-heading-font-family: 'Space Grotesk', 'Inter', sans-serif;
   --ifm-code-font-size: 90%;
+  --cache-bust-version: 2.0; /* Force new CSS hash for GitHub Pages */
   --ifm-font-size-base: 16px;
   --ifm-line-height-base: 1.75;
 
