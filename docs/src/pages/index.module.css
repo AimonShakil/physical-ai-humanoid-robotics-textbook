@@ -136,11 +136,15 @@
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1.5rem;
-  color: #ffffff;
+  color: #ffffff !important;
+  background: none !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
 [data-theme='dark'] .heroTitle {
-  color: #ffffff;
+  color: #ffffff !important;
+  background: none !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
 .heroSubtitle {
