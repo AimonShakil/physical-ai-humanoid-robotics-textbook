@@ -136,14 +136,14 @@
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 1.5rem;
-  color: var(--ifm-heading-color);
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  color: #1a1a1a;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
 }
 
 [data-theme='dark'] .heroTitle {
   color: #ffffff;
-  text-shadow: 0 0 40px rgba(0, 245, 255, 0.3);
+  text-shadow: 0 2px 20px rgba(0, 245, 255, 0.8), 0 0 60px rgba(0, 245, 255, 0.4);
 }
 
 .heroSubtitle {
