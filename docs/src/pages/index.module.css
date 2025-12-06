@@ -133,17 +133,26 @@
 
 .heroTitle {
   font-size: 4rem;
-  font-weight: 800;
-  line-height: 1.2;
+  font-weight: 900;
+  line-height: 1.3;
   margin-bottom: 1.5rem;
-  color: #1a1a1a;
-  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
+  display: inline-block;
 }
 
 [data-theme='dark'] .heroTitle {
-  color: #ffffff;
-  text-shadow: 0 2px 20px rgba(0, 245, 255, 0.8), 0 0 60px rgba(0, 245, 255, 0.4);
+  color: #00f5ff;
+  background: rgba(0, 0, 0, 0.7);
+  text-shadow: 0 0 20px rgba(0, 245, 255, 0.8), 0 0 40px rgba(0, 245, 255, 0.4);
+  border: 2px solid rgba(0, 245, 255, 0.3);
 }
 
 .heroSubtitle {
