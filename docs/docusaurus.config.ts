@@ -93,10 +93,6 @@ const config: Config = {
           label: 'Textbook',
         },
         {
-          type: 'search',
-          position: 'right',
-        },
-        {
           href: 'https://github.com/AimonShakil/physical-ai-humanoid-robotics-textbook',
           label: 'GitHub',
           position: 'right',
