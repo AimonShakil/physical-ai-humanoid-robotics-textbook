@@ -60,8 +60,12 @@ export default function Chatbot(): React.JSX.Element {
     setLoading(true);
 
     try {
-      // Use environment variable for backend URL, fallback to localhost for development
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+      // Detect production (GitHub Pages) vs development
+      const isProduction = window.location.hostname.includes('github.io');
+      const backendUrl = isProduction
+        ? 'https://physical-ai-humanoid-robotics-textbook-production.up.railway.app'
+        : 'http://localhost:8000';
+
       const response = await fetch(`${backendUrl}/api/chat`, {
         method: 'POST',
         headers: {
