@@ -136,23 +136,25 @@
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1.5rem;
-  color: var(--ifm-font-color-base);
+  color: #ffffff;
 }
 
 [data-theme='dark'] .heroTitle {
-  color: var(--ifm-font-color-base);
+  color: #ffffff;
 }
 
 .heroSubtitle {
   font-size: 1.5rem;
-  color: var(--ifm-color-emphasis-700);
+  color: #ffffff;
   margin-bottom: 3rem;
   font-weight: 400;
   animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s backwards;
+  opacity: 0.9;
 }
 
 [data-theme='dark'] .heroSubtitle {
-  color: var(--ifm-color-emphasis-600);
+  color: #ffffff;
+  opacity: 0.9;
 }
 
 /* Hero Stats */
@@ -187,10 +189,11 @@
 
 .statLabel {
   font-size: 0.9rem;
-  color: var(--ifm-color-emphasis-600);
+  color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 600;
+  opacity: 0.8;
 }
 
 /* Hero Buttons */
